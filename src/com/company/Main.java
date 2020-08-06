@@ -3,33 +3,37 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-        Clients person = new Clients();
-        person.startMyClass();
     }
 }
 class Clients{
-    void startMyClass(){
-        Account <String, Float> account = new Account("Vasa", 3000d);
-        account.print();
+    public static void main(String[] args){
+        Account <String, Float> account = new Account();
+        account.print("Vasa", 8000d);
     }
 }
 
-class Account <T extends Object, S extends Number> implements Printable {
+class Account <T extends String, S extends Number> implements Printable {
 
     private String client;
     private S count;
 
-    public <A>Account(T client, S count) {
+
+    public <A> Account(T client, S count) {
         this.client = client.toString();
         this.count = count;
     }
 
+    public Account() {
+    }
+
     @Override
-    public void print() {
-        System.out.println("Имя клиента " + client + "\nБаланс " + count);
+    public void print(Object client, Object count) {
+        System.out.println("Клиент: " + client + "\nБаланс: " + count);
     }
 }
 
-interface Printable <T>{
-    void print();
+
+interface Printable <T, S>{
+    void print(T t, S s);
+
 }
